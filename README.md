@@ -30,6 +30,11 @@ projects/       One Java project per team member
 contributions/  Contribution statement material
 ```
 
+## Java projects
+
+- `projects/TeachingStaff-GradeSubmission` - Teaching Staff grading workflow derived
+  from the approved activity and sequence diagrams.
+
 ## Academic integrity
 
 This repository is private and intended only for authorised team members. Each member must review, understand, and be able to explain their submitted work.
