@@ -1,0 +1,265 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2600" height="3300" viewBox="0 0 2600 3300">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#263238"/></marker>
+  <marker id="openArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10" fill="none" stroke="#263238" stroke-width="1.5"/></marker>
+  <style>
+    .title{font:700 36px Arial,sans-serif;fill:#17212b}.head{fill:#d9ebff;stroke:#2867ad;stroke-width:2.5}.headText{font:600 16px Arial,sans-serif;fill:#101820;text-anchor:middle}.stereo{font:italic 14px Arial,sans-serif;fill:#40576e;text-anchor:middle}
+    .life{stroke:#677785;stroke-width:2;stroke-dasharray:9 8}.activation{fill:#fff;stroke:#2867ad;stroke-width:2}.message{stroke:#263238;stroke-width:2.3;fill:none;marker-end:url(#arrow)}.return{stroke:#263238;stroke-width:2;stroke-dasharray:8 6;fill:none;marker-end:url(#openArrow)}
+    .msgText{font:15px Arial,sans-serif;fill:#111;text-anchor:middle}.frame{fill:none;stroke:#536473;stroke-width:2}.divider{stroke:#536473;stroke-width:1.8;stroke-dasharray:8 6}.frameLabel{font:700 16px Arial,sans-serif;fill:#111}.guard{font:italic 15px Arial,sans-serif;fill:#111}.legend{font:16px Arial,sans-serif;fill:#23374b}
+  </style>
+</defs>
+<rect width="2600" height="3300" fill="#fff"/>
+<text class="title" x="1300" y="52" text-anchor="middle">Sequence Diagram - Grade Submission</text>
+<rect class="frame" x="80" y="439" width="720" height="113"/>
+<path class="frame" d="M80 439h72v28l-15 14h-57z" fill="#f4f7fa"/>
+<text class="frameLabel" x="90" y="460">break</text>
+<text class="guard" x="164" y="461">[not authorised]</text>
+<rect class="frame" x="610" y="880" width="1370" height="211"/>
+<path class="frame" d="M610 880h70v28l-15 14h-55z" fill="#f4f7fa"/>
+<text class="frameLabel" x="620" y="901">par</text>
+<text class="guard" x="692" y="902">[load submission content]</text>
+<line class="divider" x1="610" y1="990" x2="1980" y2="990"/>
+<rect class="frame" x="80" y="1174" width="2240" height="652"/>
+<path class="frame" d="M80 1174h70v28l-15 14h-55z" fill="#f4f7fa"/>
+<text class="frameLabel" x="90" y="1195">opt</text>
+<text class="guard" x="162" y="1196">[similarity check requested]</text>
+<rect class="frame" x="620" y="1419" width="1690" height="407"/>
+<path class="frame" d="M620 1419h70v28l-15 14h-55z" fill="#f4f7fa"/>
+<text class="frameLabel" x="630" y="1440">alt</text>
+<text class="guard" x="702" y="1441">[service available]</text>
+<line class="divider" x1="620" y1="1676" x2="2310" y2="1676"/>
+<rect class="frame" x="80" y="1811" width="2440" height="799"/>
+<path class="frame" d="M80 1811h70v28l-15 14h-55z" fill="#f4f7fa"/>
+<text class="frameLabel" x="90" y="1832">loop</text>
+<text class="guard" x="162" y="1833">[for each rubric criterion]</text>
+<rect class="frame" x="620" y="1958" width="1880" height="554"/>
+<path class="frame" d="M620 1958h70v28l-15 14h-55z" fill="#f4f7fa"/>
+<text class="frameLabel" x="630" y="1979">alt</text>
+<text class="guard" x="702" y="1980">[invalid criterion information]</text>
+<line class="divider" x1="620" y1="2117" x2="2500" y2="2117"/>
+<line class="divider" x1="620" y1="2411" x2="2500" y2="2411"/>
+<text class="guard" x="640" y="1669">[service unavailable or content unsupported]</text>
+<text class="guard" x="640" y="2110">[custom mark]</text>
+<text class="guard" x="640" y="2404">[standard rubric mark]</text>
+<line class="life" x1="130" y1="197" x2="130" y2="3150"/>
+<line class="life" x1="415" y1="197" x2="415" y2="3150"/>
+<line class="life" x1="700" y1="197" x2="700" y2="3150"/>
+<line class="life" x1="985" y1="197" x2="985" y2="3150"/>
+<line class="life" x1="1270" y1="197" x2="1270" y2="3150"/>
+<line class="life" x1="1555" y1="197" x2="1555" y2="3150"/>
+<line class="life" x1="1840" y1="197" x2="1840" y2="3150"/>
+<line class="life" x1="2125" y1="197" x2="2125" y2="3150"/>
+<line class="life" x1="2410" y1="197" x2="2410" y2="3150"/>
+<rect class="activation" x="408" y="261" width="14" height="2780"/>
+<rect class="activation" x="693" y="310" width="14" height="2682"/>
+<rect class="activation" x="978" y="359" width="14" height="85"/>
+<rect class="activation" x="1263" y="653" width="14" height="85"/>
+<rect class="activation" x="1548" y="898" width="14" height="85"/>
+<rect class="activation" x="1833" y="996" width="14" height="85"/>
+<rect class="activation" x="1548" y="1290" width="14" height="85"/>
+<rect class="activation" x="2118" y="1388" width="14" height="330"/>
+<rect class="activation" x="1548" y="1486" width="14" height="85"/>
+<rect class="activation" x="1833" y="1927" width="14" height="526"/>
+<rect class="activation" x="2403" y="2368" width="14" height="575"/>
+<line class="message" x1="130" y1="279" x2="415" y2="279"/>
+<rect x="140" y="260" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="274">1: openAssignedCourse(courseId)</text>
+<line class="message" x1="415" y1="328" x2="700" y2="328"/>
+<rect x="425" y="309" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="323">2: openGrading(courseId)</text>
+<line class="message" x1="700" y1="377" x2="985" y2="377"/>
+<rect x="710" y="358" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="842.5" y="372">3: verifyAssignment(staffId, courseId)</text>
+<line class="return" x1="985" y1="426" x2="700" y2="426"/>
+<rect x="710" y="407" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="842.5" y="421">4: assignmentStatus</text>
+<line class="message" x1="700" y1="475" x2="415" y2="475"/>
+<rect x="425" y="456" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="470">5a: displayAccessError()</text>
+<line class="message" x1="415" y1="524" x2="130" y2="524"/>
+<rect x="140" y="505" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="519">5b: showAccessDenied()</text>
+<line class="message" x1="130" y1="573" x2="415" y2="573"/>
+<rect x="140" y="554" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="568">6: selectAssessment(assessmentId)</text>
+<line class="message" x1="415" y1="622" x2="700" y2="622"/>
+<rect x="425" y="603" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="617">7: getSubmissions(assessmentId)</text>
+<line class="message" x1="700" y1="671" x2="1270" y2="671"/>
+<rect x="710" y="652" width="550" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="985" y="666">8: listSubmissions()</text>
+<line class="return" x1="1270" y1="720" x2="700" y2="720"/>
+<rect x="710" y="701" width="550" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="985" y="715">9: submissions</text>
+<line class="message" x1="700" y1="769" x2="415" y2="769"/>
+<rect x="425" y="750" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="764">10: displaySubmissions(submissions)</text>
+<line class="message" x1="130" y1="818" x2="415" y2="818"/>
+<rect x="140" y="799" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="813">11: selectSubmission(submissionId)</text>
+<line class="message" x1="415" y1="867" x2="700" y2="867"/>
+<rect x="425" y="848" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="862">12: loadGradingWorkspace(submissionId)</text>
+<line class="message" x1="700" y1="916" x2="1555" y2="916"/>
+<rect x="710" y="897" width="835" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1127.5" y="911">13a: getContent()</text>
+<line class="return" x1="1555" y1="965" x2="700" y2="965"/>
+<rect x="710" y="946" width="835" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1127.5" y="960">13b: submissionContent</text>
+<line class="message" x1="700" y1="1014" x2="1840" y2="1014"/>
+<rect x="710" y="995" width="1120" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1270" y="1009">13c: getCriteria()</text>
+<line class="return" x1="1840" y1="1063" x2="700" y2="1063"/>
+<rect x="710" y="1044" width="1120" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1270" y="1058">13d: rubricCriteria</text>
+<line class="message" x1="700" y1="1112" x2="415" y2="1112"/>
+<rect x="425" y="1093" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="1107">14: displayGradingWorkspace(content, criteria)</text>
+<line class="message" x1="415" y1="1161" x2="130" y2="1161"/>
+<rect x="140" y="1142" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="1156">15: showSubmissionAndRubric()</text>
+<line class="message" x1="130" y1="1210" x2="415" y2="1210"/>
+<rect x="140" y="1191" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="1205">16: requestSimilarityCheck()</text>
+<line class="message" x1="415" y1="1259" x2="700" y2="1259"/>
+<rect x="425" y="1240" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="1254">17: checkSimilarity(submissionId)</text>
+<line class="message" x1="700" y1="1308" x2="1555" y2="1308"/>
+<rect x="710" y="1289" width="835" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1127.5" y="1303">18: getSupportedContent()</text>
+<line class="return" x1="1555" y1="1357" x2="700" y2="1357"/>
+<rect x="710" y="1338" width="835" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1127.5" y="1352">19: supportedContent</text>
+<line class="message" x1="700" y1="1406" x2="2125" y2="1406"/>
+<rect x="710" y="1387" width="1405" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1412.5" y="1401">20: analyse(content)</text>
+<line class="return" x1="2125" y1="1455" x2="700" y2="1455"/>
+<rect x="710" y="1436" width="1405" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1412.5" y="1450">21a: similarityReport</text>
+<line class="message" x1="700" y1="1504" x2="1555" y2="1504"/>
+<rect x="710" y="1485" width="835" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1127.5" y="1499">22a: linkSimilarityReport(report)</text>
+<line class="return" x1="1555" y1="1553" x2="700" y2="1553"/>
+<rect x="710" y="1534" width="835" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1127.5" y="1548">23a: reportLinked</text>
+<line class="message" x1="700" y1="1602" x2="415" y2="1602"/>
+<rect x="425" y="1583" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="1597">24a: displaySimilarityReport(report)</text>
+<line class="message" x1="415" y1="1651" x2="130" y2="1651"/>
+<rect x="140" y="1632" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="1646">25a: showSimilarityReport()</text>
+<line class="return" x1="2125" y1="1700" x2="700" y2="1700"/>
+<rect x="710" y="1681" width="1405" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1412.5" y="1695">21b: serviceError</text>
+<line class="message" x1="700" y1="1749" x2="415" y2="1749"/>
+<rect x="425" y="1730" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="1744">22b: displaySimilarityUnavailable()</text>
+<line class="message" x1="415" y1="1798" x2="130" y2="1798"/>
+<rect x="140" y="1779" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="1793">23b: showWarning()</text>
+<line class="message" x1="130" y1="1847" x2="415" y2="1847"/>
+<rect x="140" y="1828" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="1842">26: enterCriterionMark(criterionId, mark, comment)</text>
+<line class="message" x1="415" y1="1896" x2="700" y2="1896"/>
+<rect x="425" y="1877" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="1891">27: submitCriterionMark(criterionId, mark, comment)</text>
+<line class="message" x1="700" y1="1945" x2="1840" y2="1945"/>
+<rect x="710" y="1926" width="1120" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1270" y="1940">28: validateMark(criterionId, mark)</text>
+<line class="return" x1="1840" y1="1994" x2="700" y2="1994"/>
+<rect x="710" y="1975" width="1120" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1270" y="1989">29a: validationError</text>
+<line class="message" x1="700" y1="2043" x2="415" y2="2043"/>
+<rect x="425" y="2024" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="2038">30a: displayValidationError(permittedRange)</text>
+<line class="message" x1="415" y1="2092" x2="130" y2="2092"/>
+<rect x="140" y="2073" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="2087">31a: requestCorrection()</text>
+<line class="return" x1="1840" y1="2141" x2="700" y2="2141"/>
+<rect x="710" y="2122" width="1120" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1270" y="2136">29b: customMarkRequiresJustification</text>
+<line class="message" x1="700" y1="2190" x2="415" y2="2190"/>
+<rect x="425" y="2171" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="2185">30b: requestJustification()</text>
+<line class="message" x1="415" y1="2239" x2="130" y2="2239"/>
+<rect x="140" y="2220" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="2234">31b: showJustificationPrompt()</text>
+<line class="message" x1="130" y1="2288" x2="415" y2="2288"/>
+<rect x="140" y="2269" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="2283">32b: enterJustification(text)</text>
+<line class="message" x1="415" y1="2337" x2="700" y2="2337"/>
+<rect x="425" y="2318" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="2332">33b: submitJustification(text)</text>
+<line class="message" x1="700" y1="2386" x2="2410" y2="2386"/>
+<rect x="710" y="2367" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2381">34b: recordCriterionMark(mark, comment, justification)</text>
+<line class="return" x1="1840" y1="2435" x2="700" y2="2435"/>
+<rect x="710" y="2416" width="1120" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1270" y="2430">29c: validStandardMark</text>
+<line class="message" x1="700" y1="2484" x2="2410" y2="2484"/>
+<rect x="710" y="2465" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2479">30c: recordCriterionMark(mark, comment)</text>
+<line class="return" x1="2410" y1="2533" x2="700" y2="2533"/>
+<rect x="710" y="2514" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2528">35: criterionRecorded</text>
+<line class="message" x1="700" y1="2582" x2="415" y2="2582"/>
+<rect x="425" y="2563" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="2577">36: criterionAccepted()</text>
+<line class="message" x1="130" y1="2631" x2="415" y2="2631"/>
+<rect x="140" y="2612" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="2626">37: enterOverallFeedback(feedback)</text>
+<line class="message" x1="130" y1="2680" x2="415" y2="2680"/>
+<rect x="140" y="2661" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="2675">38: selectSaveDraft()</text>
+<line class="message" x1="415" y1="2729" x2="700" y2="2729"/>
+<rect x="425" y="2710" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="2724">39: saveDraft(feedback)</text>
+<line class="message" x1="700" y1="2778" x2="2410" y2="2778"/>
+<rect x="710" y="2759" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2773">40: calculateTotal()</text>
+<line class="return" x1="2410" y1="2827" x2="700" y2="2827"/>
+<rect x="710" y="2808" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2822">41: totalMark</text>
+<line class="message" x1="700" y1="2876" x2="2410" y2="2876"/>
+<rect x="710" y="2857" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2871">42: saveDraft(totalMark, feedback)</text>
+<line class="return" x1="2410" y1="2925" x2="700" y2="2925"/>
+<rect x="710" y="2906" width="1690" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="1555" y="2920">43: draftSaved</text>
+<line class="message" x1="700" y1="2974" x2="415" y2="2974"/>
+<rect x="425" y="2955" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="557.5" y="2969">44: displayDraftConfirmation(totalMark)</text>
+<line class="message" x1="415" y1="3023" x2="130" y2="3023"/>
+<rect x="140" y="3004" width="265" height="19" fill="#fff" opacity="0.94"/>
+<text class="msgText" x="272.5" y="3018">45: showDraftSavedConfirmation()</text>
+<circle cx="130" cy="105" r="19" fill="none" stroke="#263238" stroke-width="3"/>
+<line x1="130" y1="124" x2="130" y2="158" stroke="#263238" stroke-width="3"/><line x1="102" y1="137" x2="158" y2="137" stroke="#263238" stroke-width="3"/><line x1="130" y1="158" x2="106" y2="185" stroke="#263238" stroke-width="3"/><line x1="130" y1="158" x2="154" y2="185" stroke="#263238" stroke-width="3"/>
+<text class="headText" x="130" y="212">Teaching Staff</text>
+<rect class="head" x="310" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="415" y="139">«boundary»</text>
+<text class="headText" x="415" y="172">gradingUI:GradingPage</text>
+<rect class="head" x="595" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="700" y="139">«control»</text>
+<text class="headText" x="700" y="164"><tspan x="700">gradingController:</tspan><tspan x="700" dy="20">GradingController</tspan></text>
+<rect class="head" x="880" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="985" y="139">«entity»</text>
+<text class="headText" x="985" y="172">course:Course</text>
+<rect class="head" x="1165" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="1270" y="139">«entity»</text>
+<text class="headText" x="1270" y="172">assessment:Assessment</text>
+<rect class="head" x="1450" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="1555" y="139">«entity»</text>
+<text class="headText" x="1555" y="172">submission:Submission</text>
+<rect class="head" x="1735" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="1840" y="139">«entity»</text>
+<text class="headText" x="1840" y="172">rubric:Rubric</text>
+<rect class="head" x="2020" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="2125" y="139">«external system»</text>
+<text class="headText" x="2125" y="164"><tspan x="2125">similarityService:</tspan><tspan x="2125" dy="20">SimilarityCheckService</tspan></text>
+<rect class="head" x="2305" y="115" width="210" height="82" rx="12"/>
+<text class="stereo" x="2410" y="139">«entity»</text>
+<text class="headText" x="2410" y="172">gradeRecord:GradeRecord</text>
+<rect x="1680" y="3200" width="28" height="28" rx="6" fill="#d9ebff" stroke="#2867ad" stroke-width="2"/>
+<text class="legend" x="1720" y="3221">Blue - Alec (s4232003) - Teaching Staff: Grade Submission</text>
+<text class="legend" x="70" y="3221">Reference for recreation in Lucidchart - replace or retain boundary/control classes consistently in the consolidated class diagram.</text>
+</svg>
