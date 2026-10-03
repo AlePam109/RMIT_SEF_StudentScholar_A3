@@ -2,7 +2,9 @@ package studentscholar.grading;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 /** Defines the criteria and validates criterion marks. */
 public final class Rubric {
@@ -14,9 +16,14 @@ public final class Rubric {
             throw new IllegalArgumentException("A rubric requires at least one criterion");
         }
         this.rubricId = requireText(rubricId, "rubricId");
+        Set<String> criterionIds = new LinkedHashSet<String>();
         for (RubricCriterion criterion : criteria) {
             if (criterion == null) {
                 throw new IllegalArgumentException("criteria must not contain null values");
+            }
+            if (!criterionIds.add(criterion.getCriterionId())) {
+                throw new IllegalArgumentException(
+                        "Duplicate rubric criterion: " + criterion.getCriterionId());
             }
         }
         this.criteria = new ArrayList<RubricCriterion>(criteria);

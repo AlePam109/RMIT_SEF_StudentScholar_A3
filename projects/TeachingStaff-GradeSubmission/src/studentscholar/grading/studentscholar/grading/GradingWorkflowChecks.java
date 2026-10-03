@@ -15,6 +15,8 @@ public final class GradingWorkflowChecks {
         verifiesSuccessfulStandardAndCustomMarkFlow();
         rejectsActionsWithoutCourseAuthorisation();
         rejectsIncompleteDrafts();
+        rejectsOutOfRangeMarks();
+        rejectsBlankCustomMarkJustification();
         protectsPendingCustomMarks();
         preventsReplacingTheOwnedGradeRecord();
         handlesUnavailableSimilarityService();
@@ -63,6 +65,23 @@ public final class GradingWorkflowChecks {
                 "overwriting a pending custom mark");
     }
 
+    private static void rejectsOutOfRangeMarks() {
+        Fixture fixture = new Fixture(true, true);
+        fixture.openWorkspace();
+        fixture.page.submitCriterionMark("CRIT-1", 11.0, "Outside the range.");
+        assert !fixture.grade.containsMarkFor("CRIT-1");
+    }
+
+    private static void rejectsBlankCustomMarkJustification() {
+        Fixture fixture = new Fixture(true, true);
+        fixture.openWorkspace();
+        fixture.page.submitCriterionMark("CRIT-1", 8.0, "Custom mark.");
+
+        expectIllegalArgument(
+                () -> fixture.page.submitJustification("   "),
+                "blank custom-mark justification");
+    }
+
     private static void preventsReplacingTheOwnedGradeRecord() {
         Fixture fixture = new Fixture(true, true);
         expectIllegalState(
@@ -84,6 +103,15 @@ public final class GradingWorkflowChecks {
             return;
         }
         throw new AssertionError("Expected IllegalStateException for " + scenario);
+    }
+
+    private static void expectIllegalArgument(Runnable operation, String scenario) {
+        try {
+            operation.run();
+        } catch (IllegalArgumentException expected) {
+            return;
+        }
+        throw new AssertionError("Expected IllegalArgumentException for " + scenario);
     }
 
     private static final class Fixture {

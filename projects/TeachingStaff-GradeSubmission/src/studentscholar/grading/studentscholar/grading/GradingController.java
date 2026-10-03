@@ -57,6 +57,7 @@ public final class GradingController {
     public void selectSubmission(String submissionId) {
         requireAuthorised();
         requireAssessmentSelected();
+        clearPendingMark();
         selectedSubmission = selectedAssessment.findSubmission(submissionId);
         activeRubric = selectedAssessment.getRubric();
 
