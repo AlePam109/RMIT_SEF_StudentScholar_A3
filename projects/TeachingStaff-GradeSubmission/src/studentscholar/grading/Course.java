@@ -27,6 +27,9 @@ public final class Course {
     }
 
     public void assignStaff(TeachingStaff staff) {
+        if (staff == null) {
+            throw new IllegalArgumentException("staff must not be null");
+        }
         assignedStaffIds.add(staff.getStaffId());
     }
 
@@ -35,6 +38,15 @@ public final class Course {
     }
 
     public void addAssessment(Assessment assessment) {
+        if (assessment == null) {
+            throw new IllegalArgumentException("assessment must not be null");
+        }
+        for (Assessment existing : assessments) {
+            if (existing.getAssessmentId().equals(assessment.getAssessmentId())) {
+                throw new IllegalArgumentException(
+                        "Duplicate assessment: " + assessment.getAssessmentId());
+            }
+        }
         assessments.add(assessment);
     }
 

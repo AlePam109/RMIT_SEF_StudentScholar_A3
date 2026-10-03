@@ -13,6 +13,10 @@ public final class CriterionMark {
             String comment,
             String justification) {
         this.criterionId = requireText(criterionId, "criterionId");
+        if (!Double.isFinite(awardedMark) || awardedMark < 0) {
+            throw new IllegalArgumentException(
+                    "awardedMark must be a finite non-negative value");
+        }
         this.awardedMark = awardedMark;
         this.comment = comment == null ? "" : comment.trim();
         this.justification = justification == null ? "" : justification.trim();

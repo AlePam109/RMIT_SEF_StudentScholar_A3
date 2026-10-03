@@ -16,8 +16,21 @@ public final class RubricCriterion {
             String description,
             double maximumMark,
             Set<Double> standardMarks) {
-        if (maximumMark <= 0) {
-            throw new IllegalArgumentException("maximumMark must be greater than zero");
+        if (!Double.isFinite(maximumMark) || maximumMark <= 0) {
+            throw new IllegalArgumentException(
+                    "maximumMark must be a finite value greater than zero");
+        }
+        if (standardMarks == null || standardMarks.isEmpty()) {
+            throw new IllegalArgumentException("standardMarks must not be null or empty");
+        }
+        for (Double standardMark : standardMarks) {
+            if (standardMark == null
+                    || !Double.isFinite(standardMark.doubleValue())
+                    || standardMark.doubleValue() < 0
+                    || standardMark.doubleValue() > maximumMark) {
+                throw new IllegalArgumentException(
+                        "Every standard mark must be within the permitted criterion range");
+            }
         }
         this.criterionId = requireText(criterionId, "criterionId");
         this.description = requireText(description, "description");
@@ -39,7 +52,7 @@ public final class RubricCriterion {
     }
 
     public boolean isWithinRange(double mark) {
-        return mark >= 0 && mark <= maximumMark;
+        return Double.isFinite(mark) && mark >= 0 && mark <= maximumMark;
     }
 
     public boolean isStandardMark(double mark) {

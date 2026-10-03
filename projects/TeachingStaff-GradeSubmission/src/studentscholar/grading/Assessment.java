@@ -33,6 +33,15 @@ public final class Assessment {
     }
 
     public void addSubmission(Submission submission) {
+        if (submission == null) {
+            throw new IllegalArgumentException("submission must not be null");
+        }
+        for (Submission existing : submissions) {
+            if (existing.getSubmissionId().equals(submission.getSubmissionId())) {
+                throw new IllegalArgumentException(
+                        "Duplicate submission: " + submission.getSubmissionId());
+            }
+        }
         submissions.add(submission);
     }
 

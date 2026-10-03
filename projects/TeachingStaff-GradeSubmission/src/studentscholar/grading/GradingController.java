@@ -18,20 +18,26 @@ public final class GradingController {
     private String pendingCriterionId;
     private double pendingMark;
     private String pendingComment;
+    private boolean authorised;
 
     public GradingController(
             TeachingStaff staff,
             GradingPage page,
             Course course,
             SimilarityCheckService similarityService) {
-        this.staff = staff;
-        this.page = page;
-        this.course = course;
-        this.similarityService = similarityService;
+        this.staff = requireCollaborator(staff, "staff");
+        this.page = requireCollaborator(page, "page");
+        this.course = requireCollaborator(course, "course");
+        this.similarityService = requireCollaborator(
+                similarityService,
+                "similarityService");
     }
 
     public void openGrading(String courseId) {
-        if (!course.verifyAssignment(staff.getStaffId(), courseId)) {
+        resetWorkflow();
+        authorised = course.verifyAssignment(staff.getStaffId(), courseId);
+
+        if (!authorised) {
             page.displayAccessError();
             return;
         }
@@ -39,11 +45,17 @@ public final class GradingController {
     }
 
     public void selectAssessment(String assessmentId) {
+        requireAuthorised();
         selectedAssessment = course.findAssessment(assessmentId);
+        selectedSubmission = null;
+        activeRubric = null;
+        draftGrade = null;
+        clearPendingMark();
         page.displaySubmissions(selectedAssessment.listSubmissions());
     }
 
     public void selectSubmission(String submissionId) {
+        requireAuthorised();
         requireAssessmentSelected();
         selectedSubmission = selectedAssessment.findSubmission(submissionId);
         activeRubric = selectedAssessment.getRubric();
@@ -60,6 +72,7 @@ public final class GradingController {
     }
 
     public void checkSimilarity() {
+        requireAuthorised();
         requireSubmissionSelected();
         try {
             String content = selectedSubmission.getSupportedContent();
@@ -72,7 +85,12 @@ public final class GradingController {
     }
 
     public void submitCriterionMark(String criterionId, double mark, String comment) {
+        requireAuthorised();
         requireSubmissionSelected();
+        if (pendingCriterionId != null) {
+            throw new IllegalStateException(
+                    "Complete the pending custom mark before entering another mark");
+        }
         MarkValidationResult result = activeRubric.validateMark(criterionId, mark);
 
         if (result == MarkValidationResult.INVALID) {
@@ -93,6 +111,8 @@ public final class GradingController {
     }
 
     public void submitJustification(String justification) {
+        requireAuthorised();
+        requireSubmissionSelected();
         if (pendingCriterionId == null) {
             throw new IllegalStateException("No custom mark is awaiting justification");
         }
@@ -109,9 +129,16 @@ public final class GradingController {
     }
 
     public void saveDraft(String feedback) {
+        requireAuthorised();
         requireSubmissionSelected();
         if (pendingCriterionId != null) {
             throw new IllegalStateException("Complete the pending custom mark first");
+        }
+        for (RubricCriterion criterion : activeRubric.getCriteria()) {
+            if (!draftGrade.containsMarkFor(criterion.getCriterionId())) {
+                throw new IllegalStateException(
+                        "Record a mark for every rubric criterion before saving the draft");
+            }
         }
 
         double totalMark = draftGrade.calculateTotal();
@@ -135,6 +162,22 @@ public final class GradingController {
         pendingComment = null;
     }
 
+    private void resetWorkflow() {
+        authorised = false;
+        selectedAssessment = null;
+        selectedSubmission = null;
+        activeRubric = null;
+        draftGrade = null;
+        clearPendingMark();
+    }
+
+    private void requireAuthorised() {
+        if (!authorised) {
+            throw new IllegalStateException(
+                    "Open an assigned course before continuing the grading workflow");
+        }
+    }
+
     private void requireAssessmentSelected() {
         if (selectedAssessment == null) {
             throw new IllegalStateException("Select an assessment first");
@@ -145,5 +188,12 @@ public final class GradingController {
         if (selectedSubmission == null || activeRubric == null || draftGrade == null) {
             throw new IllegalStateException("Select a submission first");
         }
+    }
+
+    private static <T> T requireCollaborator(T collaborator, String name) {
+        if (collaborator == null) {
+            throw new IllegalArgumentException(name + " must not be null");
+        }
+        return collaborator;
     }
 }

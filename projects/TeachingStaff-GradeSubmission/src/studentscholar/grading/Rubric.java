@@ -14,6 +14,11 @@ public final class Rubric {
             throw new IllegalArgumentException("A rubric requires at least one criterion");
         }
         this.rubricId = requireText(rubricId, "rubricId");
+        for (RubricCriterion criterion : criteria) {
+            if (criterion == null) {
+                throw new IllegalArgumentException("criteria must not contain null values");
+            }
+        }
         this.criteria = new ArrayList<RubricCriterion>(criteria);
     }
 

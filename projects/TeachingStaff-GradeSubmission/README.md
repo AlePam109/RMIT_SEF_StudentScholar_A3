@@ -17,6 +17,7 @@ From this project directory:
 ```text
 javac -d out src/studentscholar/grading/*.java
 java -cp out studentscholar.grading.Main
+java -ea -cp out studentscholar.grading.GradingWorkflowChecks
 ```
 
 ## Sequence coverage
@@ -29,3 +30,8 @@ calculation, draft persistence, and confirmation.
 The `GradeRecord` used by the interaction is initialized in the demonstration fixture
 before grading begins. This matches the note attached to `draftGrade:GradeRecord` in
 the sequence diagram.
+
+The workflow checks cover successful standard and custom marks, access control,
+incomplete grading, pending custom-mark protection, the one-grade-record composition,
+and unavailable similarity checking. They use Java assertions and require no external
+test library.

@@ -47,6 +47,10 @@ public final class Submission {
         if (draftGrade == null) {
             throw new IllegalArgumentException("draftGrade must not be null");
         }
+        if (gradeRecord != null) {
+            throw new IllegalStateException(
+                    "A submission cannot own more than one GradeRecord");
+        }
         this.gradeRecord = draftGrade;
     }
 

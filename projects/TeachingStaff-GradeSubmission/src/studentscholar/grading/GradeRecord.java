@@ -48,6 +48,13 @@ public final class GradeRecord {
         criterionMarks.put(mark.getCriterionId(), mark);
     }
 
+    public boolean containsMarkFor(String criterionId) {
+        if (criterionId == null || criterionId.trim().isEmpty()) {
+            return false;
+        }
+        return criterionMarks.containsKey(criterionId);
+    }
+
     public double calculateTotal() {
         double calculatedTotal = 0;
         for (CriterionMark mark : criterionMarks.values()) {
@@ -57,6 +64,9 @@ public final class GradeRecord {
     }
 
     public void saveDraft(double totalMark, String feedback) {
+        if (!Double.isFinite(totalMark) || totalMark < 0) {
+            throw new IllegalArgumentException("totalMark must be a finite non-negative value");
+        }
         this.totalMark = totalMark;
         this.overallFeedback = feedback == null ? "" : feedback.trim();
         this.status = GradeStatus.DRAFT;
