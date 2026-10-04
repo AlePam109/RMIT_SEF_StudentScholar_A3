@@ -1,11 +1,12 @@
 // Rohan Chaudhari
 package com.studentScholar.observer;
 
-class NotificationService implements EventObserver {
+public class NotificationService implements EventObserver {
     private String serviceId;
     private String notificationType;
 
     public void update(String event) {
+        sendNotification();
     }
 
     public boolean isActive() {
@@ -13,5 +14,6 @@ class NotificationService implements EventObserver {
     }
 
     public void sendNotification() {
+        System.out.println("[NotificationService] Confirmation email sent to student");
     }
 }

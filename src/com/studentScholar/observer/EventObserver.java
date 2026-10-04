@@ -1,7 +1,7 @@
 // Rohan Chaudhari
 package com.studentScholar.observer;
 
-interface EventObserver {
+public interface EventObserver {
     void update(String event);
 
     boolean isActive();

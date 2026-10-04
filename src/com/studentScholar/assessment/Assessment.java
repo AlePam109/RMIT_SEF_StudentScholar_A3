@@ -7,7 +7,6 @@ import com.studentScholar.persistence.Database;
 import com.studentScholar.persistence.FileStorage;
 import com.studentScholar.users.Student;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,7 +67,7 @@ public class Assessment {
 
     // Rohan Chaudhari
     public String selectAssessment(Assessment assessment) {
-        return assessment.getAssessmentId();
+        return assessment.getTitle() + " (due " + assessment.submissionDeadline + ")";
     }
 
     // Rohan Chaudhari
@@ -78,24 +77,31 @@ public class Assessment {
 
     // Rohan Chaudhari
     public Submission submitAssessment(Student student, String fileName) {
-        LocalDateTime now = LocalDateTime.now();
-        if (!isSubmissionOpen(now) && !hasApprovedExtension(student, now)) {
-            System.out.println("Submission period closed for " + assessmentId);
-            return null;
+        boolean isOpen = isSubmissionOpen(LocalDateTime.now());
+        if (!isOpen) {
+            ExtensionRequest request = null;
+            String status = null;
+            for (ExtensionRequest candidate : extensionRequests) {
+                status = candidate.getStatus(student);
+                if (status != null) {
+                    request = candidate;
+                    break;
+                }
+            }
+            if (request == null || !"APPROVED".equals(status)) {
+                System.out.println("Submission rejected: outside submission period for " + assessmentId);
+                return null;
+            }
+            updateSubmissionDeadline(student, request.getExtendedDeadline());
         }
         requireCollaborators();
 
-        fileStorage.save(new File(fileName));
         Submission submission = new Submission(
                 assessmentId + "-SUB-" + (submissions.size() + 1),
-                student,
-                fileName,
-                fileName);
+                student, fileName, database, fileStorage, eventBus);
         submission.setAssessment(this);
-        submission.recordSubmissionDateTime();
         submissions.add(submission);
-        database.save(submission);
-        submission.generateConfirmation();
+        submission.submit(student);
         return submission;
     }
 
@@ -112,31 +118,13 @@ public class Assessment {
         if (extendedDeadline == null) {
             throw new IllegalArgumentException("extendedDeadline must not be null");
         }
-        for (ExtensionRequest request : extensionRequests) {
-            if (!"NOT_FOUND".equals(request.getStatus(student))) {
-                request.approve(extendedDeadline);
-                System.out.println("Deadline for " + student.getUserId()
-                        + " extended to " + extendedDeadline);
-                return;
-            }
-        }
-        throw new IllegalStateException("No extension request found for " + student.getUserId());
-    }
-
-    // Rohan Chaudhari
-    private boolean hasApprovedExtension(Student student, LocalDateTime dateTime) {
-        for (ExtensionRequest request : extensionRequests) {
-            if (request.isApprovedFor(student, dateTime)) {
-                return true;
-            }
-        }
-        return false;
+        System.out.println("Deadline for " + student.getUserId() + " extended to " + extendedDeadline);
     }
 
     // Rohan Chaudhari
     private void requireCollaborators() {
-        if (fileStorage == null || database == null) {
-            throw new IllegalStateException("FileStorage and Database must be provided");
+        if (fileStorage == null || database == null || eventBus == null) {
+            throw new IllegalStateException("FileStorage, Database and EventBus must be provided");
         }
     }
 

@@ -2,8 +2,12 @@ package com.studentScholar.assessment;
 
 import com.studentScholar.grading.GradeRecord;
 import com.studentScholar.grading.SimilarityReport;
+import com.studentScholar.observer.EventBus;
+import com.studentScholar.persistence.Database;
+import com.studentScholar.persistence.FileStorage;
 import com.studentScholar.users.Student;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -17,6 +21,9 @@ public class Submission {
     private Assessment assessment;               // Rohan Chaudhari
     private GradeRecord gradeRecord;             // Alec Pham
     private SimilarityReport similarityReport;   // Alec Pham
+    private Database database;                   // Rohan Chaudhari
+    private FileStorage fileStorage;             // Rohan Chaudhari
+    private EventBus eventBus;                   // Rohan Chaudhari
 
     // Alec Pham
     public Submission(String submissionId, Student student, String fileName, String supportedContent) {
@@ -27,6 +34,15 @@ public class Submission {
         this.student = student;
         this.fileName = fileName;
         this.supportedContent = requireText(supportedContent, "supportedContent");
+    }
+
+    // Rohan Chaudhari
+    Submission(String submissionId, Student student, String fileName,
+               Database database, FileStorage fileStorage, EventBus eventBus) {
+        this(submissionId, student, fileName, fileName);
+        this.database = database;
+        this.fileStorage = fileStorage;
+        this.eventBus = eventBus;
     }
 
     // Alec Pham
@@ -71,6 +87,11 @@ public class Submission {
 
     // Rohan Chaudhari
     public void submit(Student student) {
+        database.save(this);
+        recordSubmissionDateTime();
+        fileStorage.save(new File(fileName));
+        generateConfirmation();
+        eventBus.publish("SubmissionConfirmed");
     }
 
     // Rohan Chaudhari

@@ -37,20 +37,21 @@ public class ExtensionRequest {
 
     public String getStatus(Student student) {
         if (this.student != student) {
-            return "NOT_FOUND";
+            return null;
         }
         return status;
     }
 
-    void approve(LocalDateTime extendedDeadline) {
+    public void approve(LocalDateTime extendedDeadline) {
         this.extendedDeadline = extendedDeadline;
         this.status = "APPROVED";
     }
 
-    boolean isApprovedFor(Student student, LocalDateTime dateTime) {
-        return this.student == student
-                && "APPROVED".equals(status)
-                && extendedDeadline != null
-                && !dateTime.isAfter(extendedDeadline);
+    public void reject() {
+        this.status = "REJECTED";
+    }
+
+    public LocalDateTime getExtendedDeadline() {
+        return extendedDeadline;
     }
 }
