@@ -12,5 +12,9 @@ public class StudentScholar {
         // Alec Pham
         System.out.println("\n=== Grade Submission ===");
         GradingDemo.run();
+
+        // Prabhuta
+        System.out.println("\n=== Bulk Enrol Students ===");
+        BulkEnrolDemo.run();
     }
 }
